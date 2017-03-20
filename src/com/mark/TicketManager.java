@@ -12,11 +12,37 @@ public class TicketManager {
         LinkedList<Ticket> ticketQueue = new LinkedList<Ticket>();
         Scanner sc = new Scanner(System.in);
 
+        while (true) {
+            System.out.println("1) Enter New Ticket\n2) Delete Ticket by ID\n3) Display Open Tickets\n4) Quit");
+            int task = Integer.parseInt(sc.nextLine());
+
+            switch (task) {
+                case 1:
+                    addTicket(ticketQueue);
+                    break;
+                case 2:
+                    deleteTicket(ticketQueue);
+                    break;
+                case 3:
+                    printAllTickets(ticketQueue);
+                    break;
+                case 4:
+                    System.out.println("Quitting program");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+
+    protected static void addTicket(LinkedList<Ticket> tickets) {
+        Scanner sc = new Scanner(System.in);
+        boolean moreProblems = true;
         String description;
         String reporter;
-        Date dateReported = new Date();     // may need to update when made?
+        Date dateReported = new Date();
         int priority;
-        boolean moreProblems = true;
 
         while (moreProblems) {
             System.out.println("Enter problem:");
@@ -29,9 +55,10 @@ public class TicketManager {
             priority = Integer.parseInt(sc.nextLine());
 
             Ticket t = new Ticket(description, priority, reporter, dateReported);
-            ticketQueue.add(t);
+            tickets.add(t);
 
-            printAllTickets(ticketQueue);
+            // FOR TESTING:
+            printAllTickets(tickets);
 
             System.out.println("More tickets?");
             String more = sc.nextLine();
@@ -42,12 +69,16 @@ public class TicketManager {
         sc.close();
     }
 
+    protected static void deleteTicket(LinkedList<Ticket> tickets) {
+
+    }
 
     protected static void printAllTickets(LinkedList<Ticket> tickets) {
         System.out.println(" ------- All Tickets ------- ");
         for (Ticket t : tickets) {
             System.out.println(t);
         }
+        System.out.println(" ------- End of Tickets ------- ");
     }
 
     // question asking method?
