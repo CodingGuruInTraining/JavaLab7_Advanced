@@ -14,11 +14,16 @@ public class Ticket {
     private Date closedDate;
     private String resolution;
 
+    private static int staticTicketIDCounter = 70001;
+    protected int ticketID;
+
     public Ticket(String desc, int p, String rep, Date repDate) {
         this.description = desc;
         this.urgency = p;
         this.reportedBy = rep;
         this.openedDate = repDate;
+        this.ticketID = staticTicketIDCounter;
+        staticTicketIDCounter++;
     }
 
     @Override
