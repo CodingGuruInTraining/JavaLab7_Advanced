@@ -72,16 +72,28 @@ public class TicketManager {
     }
 
     protected static void deleteTicket(LinkedList<Ticket> tickets) {
+        printAllTickets(tickets);
+        if (tickets.size() == 0) {
+            System.out.println("There are no tickets to delete.");
+            return;
+        }
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter ID of Ticket to delete:");
-        int input = Integer.parseInt(sc.nextLine());
+        int input = sc.nextInt();
+
+        boolean foundID = false;
         for (Ticket t : tickets) {
-            if (t.ticketID == input) {
-                System.out.println("found it!");
-                return;
+            if (t.getTicketID() == input) {
+                foundID = true;
+                System.out.println(String.format("Ticket %d has been deleted.", input));
+                break;
             }
         }
-        System.out.println("Can't find it.");
+        if (foundID == false) {
+            System.out.println(String.format("Ticket %d was not found.", input));
+        }
+        printAllTickets(tickets);
     }
 
     protected static void printAllTickets(LinkedList<Ticket> tickets) {
