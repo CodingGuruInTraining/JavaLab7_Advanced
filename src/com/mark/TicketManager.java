@@ -57,7 +57,7 @@ public class TicketManager {
             priority = Integer.parseInt(sc.nextLine());
 
             Ticket t = new Ticket(description, priority, reporter, dateReported);
-            tickets.add(t);
+//            tickets.add(t);
             addTicketByPriority(tickets, t);
 
 
