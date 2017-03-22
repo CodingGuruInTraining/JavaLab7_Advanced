@@ -1,5 +1,6 @@
 package com.mark;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -57,10 +58,16 @@ public class TicketManager {
 
             Ticket t = new Ticket(description, priority, reporter, dateReported);
             tickets.add(t);
+            addTicketByPriority(tickets, t);
+
 
             // FOR TESTING:
             // TODO remove once complete
             printAllTickets(tickets);
+
+
+
+
 
             System.out.println("More tickets? (Y/N)");
             String more = sc.nextLine();
@@ -69,6 +76,21 @@ public class TicketManager {
             }
         }
 //        sc.close();
+    }
+
+    protected static void addTicketByPriority(LinkedList<Ticket> tickets, Ticket newTicket) {
+        if (tickets.size() == 0) {
+            tickets.add(newTicket);
+            return;
+        }
+        int newTicketPriority = newTicket.getUrgency();
+        for (int x = 0; x < tickets.size(); x++) {
+            if (newTicketPriority >= tickets.get(x).getUrgency()) {
+                tickets.add(x, newTicket);
+                return;
+            }
+        }
+        tickets.addLast(newTicket);
     }
 
     protected static void deleteTicket(LinkedList<Ticket> tickets) {
