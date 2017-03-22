@@ -27,8 +27,9 @@ public class TicketManager {
                     printAllTickets(ticketQueue);
                     break;
                 case 4:
-                    System.out.println("Quitting program");
-                    break;
+                    System.out.println("Quitting program...goodbye");
+                    return;
+//                    break;
                 default:
                     break;
             }
@@ -60,13 +61,13 @@ public class TicketManager {
             // FOR TESTING:
             printAllTickets(tickets);
 
-            System.out.println("More tickets?");
+            System.out.println("More tickets? (Y/N)");
             String more = sc.nextLine();
             if (more.equalsIgnoreCase("N")) {
                 moreProblems = false;
             }
         }
-        sc.close();
+//        sc.close();
     }
 
     protected static void deleteTicket(LinkedList<Ticket> tickets) {
@@ -78,7 +79,7 @@ public class TicketManager {
         for (Ticket t : tickets) {
             System.out.println(t);
         }
-        System.out.println(" ------- End of Tickets ------- ");
+        System.out.println(" ----- End of Tickets ----- ");
     }
 
     // question asking method?
