@@ -26,10 +26,15 @@ public class Ticket {
         staticTicketIDCounter++;
     }
 
+    protected int getUrgency() {
+        return this.urgency;
+    }
+
     @Override
     public String toString() {
-        return "Ticket: " + this.description +
-                "\n\tPriority: " + this.urgency +
+        return "Ticket ID: " + this.ticketID +
+                "\n\tIssue: " + this.description +
+                " Priority: " + this.urgency +
                 " Reported by: " + this.reportedBy +
                 " Reported on: " + this.openedDate;
     }

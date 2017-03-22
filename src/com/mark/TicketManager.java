@@ -59,6 +59,7 @@ public class TicketManager {
             tickets.add(t);
 
             // FOR TESTING:
+            // TODO remove once complete
             printAllTickets(tickets);
 
             System.out.println("More tickets? (Y/N)");
@@ -71,7 +72,12 @@ public class TicketManager {
     }
 
     protected static void deleteTicket(LinkedList<Ticket> tickets) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter ID of Ticket to delete:");
+        int input = Integer.parseInt(sc.nextLine());
+        for (Ticket t : tickets) {
 
+        }
     }
 
     protected static void printAllTickets(LinkedList<Ticket> tickets) {
@@ -90,11 +96,9 @@ public class TicketManager {
     // main method
         // creates file manager on startup
 
-    // add new ticket method
-
-    // display open tickets method
-
     // close ticket method
         // remove from list; send to file manager to append to file
 
+    // TODO add try/catches
+    // TODO limit priority input range
 }
