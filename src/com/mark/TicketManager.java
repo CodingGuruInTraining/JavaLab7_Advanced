@@ -76,8 +76,12 @@ public class TicketManager {
         System.out.println("Enter ID of Ticket to delete:");
         int input = Integer.parseInt(sc.nextLine());
         for (Ticket t : tickets) {
-
+            if (t.ticketID == input) {
+                System.out.println("found it!");
+                return;
+            }
         }
+        System.out.println("Can't find it.");
     }
 
     protected static void printAllTickets(LinkedList<Ticket> tickets) {

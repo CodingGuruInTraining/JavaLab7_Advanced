@@ -29,6 +29,9 @@ public class Ticket {
     protected int getUrgency() {
         return this.urgency;
     }
+    protected int getTicketID() {
+        return this.ticketID;
+    }
 
     @Override
     public String toString() {
