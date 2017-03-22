@@ -1,6 +1,5 @@
 package com.mark;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -9,13 +8,13 @@ import java.util.Scanner;
  * Created by hl4350hb on 3/20/2017.
  */
 public class TicketManager {
-    public static void main(String[] args) {
-        LinkedList<Ticket> ticketQueue = new LinkedList<Ticket>();
-        Scanner sc = new Scanner(System.in);
 
+    LinkedList<Ticket> ticketQueue = new LinkedList<Ticket>();
+
+    private void mainMenu() {
         while (true) {
             System.out.println("1) Enter New Ticket\n2) Delete Ticket by ID\n3) Display Open Tickets\n4) Quit");
-            int task = Integer.parseInt(sc.nextLine());
+            int task = Input.getPositiveIntInput("Enter your selection from list:");
 
             switch (task) {
                 case 1:
@@ -30,7 +29,6 @@ public class TicketManager {
                 case 4:
                     System.out.println("Quitting program...goodbye");
                     return;
-//                    break;
                 default:
                     break;
             }
@@ -75,7 +73,6 @@ public class TicketManager {
                 moreProblems = false;
             }
         }
-//        sc.close();
     }
 
     protected static void addTicketByPriority(LinkedList<Ticket> tickets, Ticket newTicket) {
@@ -125,6 +122,13 @@ public class TicketManager {
         }
         System.out.println(" ----- End of Tickets ----- ");
     }
+
+
+    public static void main(String[] args) {
+        TicketManager manager = new TicketManager();
+        manager.mainMenu();
+    }
+
 
     // question asking method?
 
