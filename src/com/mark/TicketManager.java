@@ -98,20 +98,22 @@ public class TicketManager {
         }
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter ID of Ticket to delete:");
-        int input = sc.nextInt();
-
         boolean foundID = false;
-        for (Ticket t : tickets) {
-            if (t.getTicketID() == input) {
-                foundID = true;
-                tickets.remove(t);
-                System.out.println(String.format("Ticket %d has been deleted.", input));
-                break;
+        while (foundID == false) {
+            System.out.println("Enter ID of Ticket to delete:");
+            int input = sc.nextInt();
+
+            for (Ticket t : tickets) {
+                if (t.getTicketID() == input) {
+                    foundID = true;
+                    tickets.remove(t);
+                    System.out.println(String.format("Ticket %d has been deleted.", input));
+                    break;
+                }
             }
-        }
-        if (foundID == false) {
-            System.out.println(String.format("Ticket %d was not found.", input));
+            if (foundID == false) {
+                System.out.println(String.format("Ticket %d was not found. Try again.", input));
+            }
         }
         printAllTickets(tickets);
     }
