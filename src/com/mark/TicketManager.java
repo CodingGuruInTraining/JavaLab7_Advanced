@@ -105,6 +105,7 @@ public class TicketManager {
         for (Ticket t : tickets) {
             if (t.getTicketID() == input) {
                 foundID = true;
+                tickets.remove(t);
                 System.out.println(String.format("Ticket %d has been deleted.", input));
                 break;
             }
