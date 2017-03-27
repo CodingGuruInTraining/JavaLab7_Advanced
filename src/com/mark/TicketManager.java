@@ -44,34 +44,36 @@ public class TicketManager {
         Date dateReported = new Date();
         int priority;
 
-        while (moreProblems) {
-            System.out.println("Enter problem:");
-            description = sc.nextLine();
+        try {
+            while (moreProblems) {
+                System.out.println("Enter problem:");
+                description = sc.nextLine();
 
-            System.out.println("Who reported this issue?:");
-            reporter = sc.nextLine();
+                System.out.println("Who reported this issue?:");
+                reporter = sc.nextLine();
 
-            System.out.println("Enter priority of this issue (1 minor - 5 urgent:");
-            priority = Integer.parseInt(sc.nextLine());
+                System.out.println("Enter priority of this issue (1 minor - 5 urgent:");
+                priority = Integer.parseInt(sc.nextLine());
 
-            Ticket t = new Ticket(description, priority, reporter, dateReported);
+                Ticket t = new Ticket(description, priority, reporter, dateReported);
 //            tickets.add(t);
-            addTicketByPriority(tickets, t);
+                addTicketByPriority(tickets, t);
 
 
-            // FOR TESTING:
-            // TODO remove once complete
-            printAllTickets(tickets);
+                // FOR TESTING:
+                // TODO remove once complete
+                printAllTickets(tickets);
 
 
-
-
-
-            System.out.println("More tickets? (Y/N)");
-            String more = sc.nextLine();
-            if (more.equalsIgnoreCase("N")) {
-                moreProblems = false;
+                System.out.println("More tickets? (Y/N)");
+                String more = sc.nextLine();
+                if (more.equalsIgnoreCase("N")) {
+                    moreProblems = false;
+                }
             }
+        }
+        catch (NumberFormatException err) {
+            System.out.println("Please enter an integer for the priority.");
         }
     }
 
