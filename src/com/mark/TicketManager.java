@@ -30,7 +30,7 @@ public class TicketManager {
 //                    printAllTickets(ticketQueue);
                     break;
                 case 4:
-                    searchByIssue(ticketQueue);
+                    searchByIssue();
                     break;
                 case 5:
                     printAllTickets(ticketQueue);
@@ -143,8 +143,10 @@ public class TicketManager {
 
     }
 
-    protected void searchByIssue(LinkedList<Ticket> tickets) {
-
+    protected void searchByIssue() {
+        String searchString = Input.getStringInput("Enter term to search descriptions for:");
+        LinkedList<Ticket> results = searchDescription(searchString);
+        printAllTickets(results);
     }
 
     protected static void printAllTickets(LinkedList<Ticket> tickets) {
@@ -152,7 +154,7 @@ public class TicketManager {
         for (Ticket t : tickets) {
             System.out.println(t);
         }
-        System.out.println(" ----- End of Tickets ----- ");
+        System.out.println(" ----- End of Tickets ------ ");
     }
 
     protected LinkedList<Ticket> searchDescription (String searchString) {
