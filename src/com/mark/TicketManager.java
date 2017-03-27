@@ -3,7 +3,6 @@ package com.mark;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 /**
  * Created by hl4350hb on 3/20/2017.
@@ -23,12 +22,10 @@ public class TicketManager {
                     addTicket();
                     break;
                 case 2:
-//                    deleteTicket(ticketQueue);
                     deleteByID();
                     break;
                 case 3:
-                    deleteByIssue(ticketQueue);
-//                    printAllTickets(ticketQueue);
+                    deleteByIssue();
                     break;
                 case 4:
                     searchByIssue();
@@ -47,7 +44,6 @@ public class TicketManager {
 
 
     protected static void addTicket() {
-//        Scanner sc = new Scanner(System.in);
         boolean moreProblems = true;
         String description;
         String reporter;
@@ -63,7 +59,6 @@ public class TicketManager {
                 priority = Input.getPositiveIntInput("Enter priority of this issue (1 minor - 5 urgent:");
 
                 Ticket t = new Ticket(description, priority, reporter, dateReported);
-//            tickets.add(t);
                 addTicketByPriority(t);
 
 
@@ -132,8 +127,16 @@ public class TicketManager {
         }
     }
 
-    protected void deleteByIssue (LinkedList<Ticket> tickets) {
-
+    protected void deleteByIssue () {
+        String searchString = Input.getStringInput("Enter description of Issue to delete:");
+        LinkedList<Ticket> results = searchDescription(searchString);
+        if (results.size() > 1) {
+            System.out.println("Your search term is not specific enough to identify Ticket.");
+        }
+        else {
+            ticketQueue.remove(results.get(0));
+            System.out.println("Ticket removed.");
+        }
     }
 
     protected void searchByIssue() {
@@ -166,13 +169,6 @@ public class TicketManager {
     }
 
 
-    // question asking method?
-
-
-
-
-    // main method
-        // creates file manager on startup
 
     // close ticket method
         // remove from list; send to file manager to append to file
