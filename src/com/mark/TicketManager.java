@@ -10,16 +10,17 @@ import java.util.Scanner;
  */
 public class TicketManager {
 
-    LinkedList<Ticket> ticketQueue = new LinkedList<Ticket>();
+    private static LinkedList<Ticket> ticketQueue = new LinkedList<Ticket>();
 
     private void mainMenu() {
         while (true) {
-            System.out.println("1) Enter New Ticket\n2) Delete Ticket by ID\n3) Display Open Tickets\n4) Quit");
+            System.out.println("1) Enter New Ticket\n2) Delete Ticket by ID\n3) Delete " +
+                    "Ticket by Issue\n4) Search by Issue\n5) Display Open Tickets\n6) Quit");
             int task = Input.getPositiveIntInput("Enter your selection from list:");
 
             switch (task) {
                 case 1:
-                    addTicket(ticketQueue);
+                    addTicket();
                     break;
                 case 2:
 //                    deleteTicket(ticketQueue);
@@ -45,8 +46,8 @@ public class TicketManager {
     }
 
 
-    protected static void addTicket(LinkedList<Ticket> tickets) {
-        Scanner sc = new Scanner(System.in);
+    protected static void addTicket() {
+//        Scanner sc = new Scanner(System.in);
         boolean moreProblems = true;
         String description;
         String reporter;
@@ -55,27 +56,25 @@ public class TicketManager {
 
         try {
             while (moreProblems) {
-                System.out.println("Enter problem:");
-                description = sc.nextLine();
+                description = Input.getStringInput("Enter problem:");
 
-                System.out.println("Who reported this issue?:");
-                reporter = sc.nextLine();
+                reporter = Input.getStringInput("Who reported this issue?:");
 
-                System.out.println("Enter priority of this issue (1 minor - 5 urgent:");
-                priority = Integer.parseInt(sc.nextLine());
+                priority = Input.getPositiveIntInput("Enter priority of this issue (1 minor - 5 urgent:");
 
                 Ticket t = new Ticket(description, priority, reporter, dateReported);
 //            tickets.add(t);
-                addTicketByPriority(tickets, t);
+                addTicketByPriority(t);
+
 
 
                 // FOR TESTING:
                 // TODO remove once complete
-                printAllTickets(tickets);
+                printAllTickets(ticketQueue);
 
 
-                System.out.println("More tickets? (Y/N)");
-                String more = sc.nextLine();
+
+                String more = Input.getStringInput("More tickets? (Y/N)");
                 if (more.equalsIgnoreCase("N")) {
                     moreProblems = false;
                 }
@@ -86,19 +85,19 @@ public class TicketManager {
         }
     }
 
-    protected static void addTicketByPriority(LinkedList<Ticket> tickets, Ticket newTicket) {
-        if (tickets.size() == 0) {
-            tickets.add(newTicket);
+    protected static void addTicketByPriority(Ticket newTicket) {
+        if (ticketQueue.size() == 0) {
+            ticketQueue.add(newTicket);
             return;
         }
         int newTicketPriority = newTicket.getUrgency();
-        for (int x = 0; x < tickets.size(); x++) {
-            if (newTicketPriority >= tickets.get(x).getUrgency()) {
-                tickets.add(x, newTicket);
+        for (int x = 0; x < ticketQueue.size(); x++) {
+            if (newTicketPriority >= ticketQueue.get(x).getUrgency()) {
+                ticketQueue.add(x, newTicket);
                 return;
             }
         }
-        tickets.addLast(newTicket);
+        ticketQueue.addLast(newTicket);
     }
 
     protected static void deleteTicket(LinkedList<Ticket> tickets) {
