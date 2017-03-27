@@ -22,12 +22,20 @@ public class TicketManager {
                     addTicket(ticketQueue);
                     break;
                 case 2:
-                    deleteTicket(ticketQueue);
+//                    deleteTicket(ticketQueue);
+                    deleteByID(ticketQueue);
                     break;
                 case 3:
-                    printAllTickets(ticketQueue);
+                    deleteByIssue(ticketQueue);
+//                    printAllTickets(ticketQueue);
                     break;
                 case 4:
+                    searchByIssue(ticketQueue);
+                    break;
+                case 5:
+                    printAllTickets(ticketQueue);
+                    break;
+                case 6:
                     System.out.println("Quitting program...goodbye");
                     return;
                 default:
@@ -127,6 +135,18 @@ public class TicketManager {
         }
     }
 
+    protected void deleteByID (LinkedList<Ticket> tickets) {
+
+    }
+
+    protected void deleteByIssue (LinkedList<Ticket> tickets) {
+
+    }
+
+    protected void searchByIssue(LinkedList<Ticket> tickets) {
+
+    }
+
     protected static void printAllTickets(LinkedList<Ticket> tickets) {
         System.out.println(" ------- All Tickets ------- ");
         for (Ticket t : tickets) {
@@ -135,6 +155,15 @@ public class TicketManager {
         System.out.println(" ----- End of Tickets ----- ");
     }
 
+    protected LinkedList<Ticket> searchDescription (String searchString) {
+        LinkedList<Ticket> resultsList = new LinkedList<>();
+        for (Ticket t : ticketQueue) {
+            if (t.getDescription().contains(searchString)) {
+                resultsList.add(t);
+            }
+        }
+        return resultsList;
+    }
 
     public static void main(String[] args) {
         TicketManager manager = new TicketManager();

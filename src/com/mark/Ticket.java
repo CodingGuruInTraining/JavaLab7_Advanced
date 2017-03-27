@@ -26,6 +26,7 @@ public class Ticket {
         staticTicketIDCounter++;
     }
 
+    protected String getDescription() { return this.description; }
     protected int getUrgency() {
         return this.urgency;
     }
