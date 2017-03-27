@@ -24,7 +24,7 @@ public class TicketManager {
                     break;
                 case 2:
 //                    deleteTicket(ticketQueue);
-                    deleteByID(ticketQueue);
+                    deleteByID();
                     break;
                 case 3:
                     deleteByIssue(ticketQueue);
@@ -100,25 +100,22 @@ public class TicketManager {
         ticketQueue.addLast(newTicket);
     }
 
-    protected static void deleteTicket(LinkedList<Ticket> tickets) {
-        printAllTickets(tickets);
-        if (tickets.size() == 0) {
+    protected static void deleteByID() {
+        printAllTickets(ticketQueue);
+        if (ticketQueue.size() == 0) {
             System.out.println("There are no tickets to delete.");
             return;
         }
 
-        Scanner sc = new Scanner(System.in);
         boolean foundID = false;
         try {
             while (foundID == false) {
+                int input = Input.getPositiveIntInput("Enter ID of Ticket to delete:");
 
-                System.out.println("Enter ID of Ticket to delete:");
-                int input = sc.nextInt();
-
-                for (Ticket t : tickets) {
+                for (Ticket t : ticketQueue) {
                     if (t.getTicketID() == input) {
                         foundID = true;
-                        tickets.remove(t);
+                        ticketQueue.remove(t);
                         System.out.println(String.format("Ticket %d has been deleted.", input));
                         break;
                     }
@@ -127,15 +124,12 @@ public class TicketManager {
                     System.out.println(String.format("Ticket %d was not found. Try again.", input));
                 }
             }
-            printAllTickets(tickets);
+            printAllTickets(ticketQueue);
         }
         catch (InputMismatchException err) {
+            // Catch for entering a non-integer for ID.
             System.out.println("That is not a correct number format.");
         }
-    }
-
-    protected void deleteByID (LinkedList<Ticket> tickets) {
-
     }
 
     protected void deleteByIssue (LinkedList<Ticket> tickets) {
