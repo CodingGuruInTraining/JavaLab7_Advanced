@@ -1,6 +1,7 @@
 package com.mark;
 
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -73,7 +74,7 @@ public class TicketManager {
             }
         }
         catch (NumberFormatException err) {
-            System.out.println("Please enter an integer for the priority.");
+            System.out.println("Please enter a number for the priority.");
         }
     }
 
@@ -101,23 +102,29 @@ public class TicketManager {
 
         Scanner sc = new Scanner(System.in);
         boolean foundID = false;
-        while (foundID == false) {
-            System.out.println("Enter ID of Ticket to delete:");
-            int input = sc.nextInt();
+        try {
+            while (foundID == false) {
 
-            for (Ticket t : tickets) {
-                if (t.getTicketID() == input) {
-                    foundID = true;
-                    tickets.remove(t);
-                    System.out.println(String.format("Ticket %d has been deleted.", input));
-                    break;
+                System.out.println("Enter ID of Ticket to delete:");
+                int input = sc.nextInt();
+
+                for (Ticket t : tickets) {
+                    if (t.getTicketID() == input) {
+                        foundID = true;
+                        tickets.remove(t);
+                        System.out.println(String.format("Ticket %d has been deleted.", input));
+                        break;
+                    }
+                }
+                if (foundID == false) {
+                    System.out.println(String.format("Ticket %d was not found. Try again.", input));
                 }
             }
-            if (foundID == false) {
-                System.out.println(String.format("Ticket %d was not found. Try again.", input));
-            }
+            printAllTickets(tickets);
         }
-        printAllTickets(tickets);
+        catch (InputMismatchException err) {
+            System.out.println("That is not a correct number format.");
+        }
     }
 
     protected static void printAllTickets(LinkedList<Ticket> tickets) {
