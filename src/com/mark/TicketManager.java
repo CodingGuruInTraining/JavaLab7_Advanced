@@ -163,6 +163,15 @@ public class TicketManager {
         return resultsList;
     }
 
+    protected void closeTicket(Ticket t) {
+        String resolution = Input.getStringInput("How was the Ticket resolved?");
+        Date closeDate = new Date();
+        t.setIsOpen(false);
+        t.setClosedDate(closeDate);
+        t.setResolution(resolution);
+
+    }
+
     public static void main(String[] args) {
         TicketManager manager = new TicketManager();
         manager.mainMenu();

@@ -24,6 +24,7 @@ public class Ticket {
         this.openedDate = repDate;
         this.ticketID = staticTicketIDCounter;
         staticTicketIDCounter++;
+        this.isOpen = true;
     }
 
     protected String getDescription() { return this.description; }
@@ -33,6 +34,10 @@ public class Ticket {
     protected int getTicketID() {
         return this.ticketID;
     }
+
+    protected void setResolution(String res) { this.resolution = res; }
+    protected void setClosedDate(Date closed) { this.closedDate = closed; }
+    protected void setIsOpen(boolean status) { this.isOpen = status; }
 
     @Override
     public String toString() {
