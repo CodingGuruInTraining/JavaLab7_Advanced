@@ -10,6 +10,7 @@ import java.util.LinkedList;
 public class TicketManager {
 
     private static LinkedList<Ticket> ticketQueue = new LinkedList<Ticket>();
+    private static LinkedList<Ticket> resolvedTickets = new LinkedList<>();
 
     private void mainMenu() {
         while (true) {
@@ -95,7 +96,7 @@ public class TicketManager {
         ticketQueue.addLast(newTicket);
     }
 
-    protected static void deleteByID() {
+    protected void deleteByID() {
         printAllTickets(ticketQueue);
         if (ticketQueue.size() == 0) {
             System.out.println("There are no tickets to delete.");
@@ -110,7 +111,8 @@ public class TicketManager {
                 for (Ticket t : ticketQueue) {
                     if (t.getTicketID() == input) {
                         foundID = true;
-                        ticketQueue.remove(t);
+//                        ticketQueue.remove(t);
+                        closeTicket(t);
                         System.out.println(String.format("Ticket %d has been deleted.", input));
                         break;
                     }
@@ -134,7 +136,8 @@ public class TicketManager {
             System.out.println("Your search term is not specific enough to identify Ticket.");
         }
         else {
-            ticketQueue.remove(results.get(0));
+//            ticketQueue.remove(results.get(0));
+            closeTicket(results.get(0));
             System.out.println("Ticket removed.");
         }
     }
@@ -169,7 +172,8 @@ public class TicketManager {
         t.setIsOpen(false);
         t.setClosedDate(closeDate);
         t.setResolution(resolution);
-
+        resolvedTickets.add(t);
+        ticketQueue.remove(t);
     }
 
     public static void main(String[] args) {
