@@ -178,12 +178,14 @@ public class TicketManager {
     }
 
     protected void exitEvent() {
-
+        filer.fileWriter(filer.openTickets, filer.openFile);
+        filer.fileWriter(filer.closedTickets, filer.closeFile);
     }
 
     public static void main(String[] args) {
         TicketManager manager = new TicketManager();
         manager.mainMenu();
+        manager.exitEvent();
     }
 
 
