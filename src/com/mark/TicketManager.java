@@ -1,5 +1,6 @@
 package com.mark;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
@@ -10,7 +11,7 @@ import java.util.LinkedList;
 public class TicketManager {
     private static TicketFileManager filer = new TicketFileManager();
     private static LinkedList<Ticket> ticketQueue = filer.fileReader(filer.openFile); // new LinkedList<Ticket>();
-    private static LinkedList<Ticket> resolvedTickets = filer.fileReader(filer.closeFile); // new LinkedList<>();
+    private static LinkedList<Ticket> resolvedTickets = new LinkedList<>(); // filer.fileReader(filer.closeFile); // new LinkedList<>();
 
     private void mainMenu() {
         while (true) {
@@ -180,7 +181,8 @@ public class TicketManager {
 
     protected void exitEvent() {
         filer.fileWriter(ticketQueue, filer.openFile);
-        filer.fileWriter(resolvedTickets, filer.closeFile);
+        String currentDate = new SimpleDateFormat("MMMM_dd_yyyy").format(new Date());
+        filer.fileWriter(resolvedTickets, filer.closeFile + currentDate + ".txt");
     }
 
     public static void main(String[] args) {

@@ -15,7 +15,7 @@ public class TicketFileManager {
     protected LinkedList<Ticket> openTickets;
     protected LinkedList<Ticket> closedTickets;
     protected String openFile = "openTickets.txt";
-    protected String closeFile = "closedTickets.txt";
+    protected String closeFile = "Resolved_tickets_as_of_";
 
     //TODO closed tickets file should have date
     //TODO add way to find file with wildcard
@@ -31,7 +31,7 @@ public class TicketFileManager {
     // Constructor.
     public TicketFileManager() {
         openTickets = fileReader(this.openFile);
-        closedTickets = fileReader(this.closeFile);
+//        closedTickets = fileReader(this.closeFile);
     }
 
     protected LinkedList<Ticket> fileReader(String filename) {
