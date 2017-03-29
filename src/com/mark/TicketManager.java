@@ -8,9 +8,9 @@ import java.util.LinkedList;
  * Created by hl4350hb on 3/20/2017.
  */
 public class TicketManager {
-
-    private static LinkedList<Ticket> ticketQueue = new LinkedList<Ticket>();
-    private static LinkedList<Ticket> resolvedTickets = new LinkedList<>();
+    private static TicketFileManager filer = new TicketFileManager();
+    private static LinkedList<Ticket> ticketQueue = filer.fileReader(filer.openFile); // new LinkedList<Ticket>();
+    private static LinkedList<Ticket> resolvedTickets = filer.fileReader(filer.closeFile); // new LinkedList<>();
 
     private void mainMenu() {
         while (true) {
