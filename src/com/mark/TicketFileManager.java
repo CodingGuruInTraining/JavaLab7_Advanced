@@ -1,8 +1,10 @@
 package com.mark;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 
 /**
@@ -17,8 +19,31 @@ public class TicketFileManager {
 
     }
 
-    protected void fileReader() {
-
+    protected LinkedList<Ticket> fileReader(String filename) {
+        try (BufferedReader buffReader = new BufferedReader(new FileReader(filename))) {
+            String ticket_line = buffReader.readLine();
+            DateFormat formatter = new SimpleDateFormat();
+            LinkedList<Ticket> tickets = new LinkedList<Ticket>();
+            while (ticket_line != null) {
+                String[] ticket_info = ticket_line.split(";");
+                int id = Integer.parseInt(ticket_info[0]);
+                String desc = ticket_info[1];
+                int p = Integer.parseInt(ticket_info[2]);
+                String rep = ticket_info[3];
+                Date repDate = formatter.parse(ticket_info[4]);
+                String res = ticket_info[5];
+                Date close = formatter.parse(ticket_info[6]);
+                Ticket t = new Ticket(id, desc, p, rep, repDate, res, close);
+                tickets.add(t);
+                ticket_line = buffReader.readLine();
+            }
+        }
+        catch (IOException err) {
+            System.out.println("One or more files could not be found.");
+        }
+        catch (ParseException err) {
+            System.out.println("An error exists with the saved dates.");
+        }
     }
 
     protected void fileWriter(LinkedList<Ticket> tickets, String filename) {

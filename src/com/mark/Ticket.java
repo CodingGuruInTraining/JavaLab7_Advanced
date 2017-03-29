@@ -27,6 +27,10 @@ public class Ticket {
         this.isOpen = true;
     }
 
+    public Ticket(int id, String desc, int p, String rep, Date repDate, String res, Date close) {
+
+    }
+
     //TODO add overload constructor for startup with ID already
 
     protected String getDescription() { return this.description; }
