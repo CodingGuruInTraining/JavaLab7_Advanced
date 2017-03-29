@@ -36,6 +36,7 @@ public class TicketManager {
                     break;
                 case 6:
                     System.out.println("Quitting program...goodbye");
+                    exitEvent();
                     return;
                 default:
                     break;
@@ -185,7 +186,7 @@ public class TicketManager {
     public static void main(String[] args) {
         TicketManager manager = new TicketManager();
         manager.mainMenu();
-        manager.exitEvent();
+//        manager.exitEvent();
     }
 
 

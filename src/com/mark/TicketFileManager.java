@@ -35,10 +35,11 @@ public class TicketFileManager {
     }
 
     protected LinkedList<Ticket> fileReader(String filename) {
+        LinkedList<Ticket> tickets = new LinkedList<Ticket>();
         try (BufferedReader buffReader = new BufferedReader(new FileReader(filename))) {
             String ticket_line = buffReader.readLine();
             DateFormat formatter = new SimpleDateFormat();
-            LinkedList<Ticket> tickets = new LinkedList<Ticket>();
+
             while (ticket_line != null) {
                 String[] ticket_info = ticket_line.split(";");
                 int id = Integer.parseInt(ticket_info[0]);
@@ -61,7 +62,7 @@ public class TicketFileManager {
         catch (ParseException err) {
             System.out.println("An error exists with the saved dates.");
         }
-        return null;
+        return tickets;
     }
 
     protected void fileWriter(LinkedList<Ticket> tickets, String filename) {
