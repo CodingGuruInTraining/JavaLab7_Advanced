@@ -38,7 +38,7 @@ public class TicketFileManager {
         LinkedList<Ticket> tickets = new LinkedList<Ticket>();
         try (BufferedReader buffReader = new BufferedReader(new FileReader(filename))) {
             String ticket_line = buffReader.readLine();
-            DateFormat formatter = new SimpleDateFormat();
+            DateFormat formatter = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy");
 
             while (ticket_line != null) {
                 String[] ticket_info = ticket_line.split(";");
@@ -47,8 +47,12 @@ public class TicketFileManager {
                 int p = Integer.parseInt(ticket_info[2]);
                 String rep = ticket_info[3];
                 Date repDate = formatter.parse(ticket_info[4]);
-                String res = ticket_info[5];
-                Date close = formatter.parse(ticket_info[6]);
+                String res = null;
+                Date close = null;
+                if (!ticket_info[5].equalsIgnoreCase("null")) {
+                    res = ticket_info[5];
+                    close = formatter.parse(ticket_info[6]);
+                }
                 Ticket t = new Ticket(id, desc, p, rep, repDate, res, close);
                 tickets.add(t);
                 ticket_line = buffReader.readLine();
