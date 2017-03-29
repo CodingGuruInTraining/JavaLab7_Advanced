@@ -15,8 +15,21 @@ public class TicketFileManager {
     // for saving open and closed tickets to separate txt files
 
 
-    public TicketFileManager() {
+    protected LinkedList<Ticket> openTickets;
+    protected LinkedList<Ticket> closedTickets;
 
+    public LinkedList<Ticket> getOpenTickets() {
+        return openTickets;
+    }
+    public LinkedList<Ticket> getClosedTickets() {
+        return closedTickets;
+    }
+
+
+
+    public TicketFileManager() {
+        openTickets = fileReader("openTickets.txt");
+        closedTickets = fileReader("closedTickets.txt");
     }
 
     protected LinkedList<Ticket> fileReader(String filename) {

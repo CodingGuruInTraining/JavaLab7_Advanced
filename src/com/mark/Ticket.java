@@ -28,7 +28,16 @@ public class Ticket {
     }
 
     public Ticket(int id, String desc, int p, String rep, Date repDate, String res, Date close) {
-
+        this.ticketID = id;
+        this.description = desc;
+        this.urgency = p;
+        this.reportedBy = rep;
+        this.openedDate = repDate;
+        this.resolution = res;
+        this.closedDate = close;
+        if (id >= staticTicketIDCounter) {
+            staticTicketIDCounter = id + 1;
+        }
     }
 
     //TODO add overload constructor for startup with ID already
