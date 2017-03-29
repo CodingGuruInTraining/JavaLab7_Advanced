@@ -40,8 +40,6 @@ public class Ticket {
         }
     }
 
-    //TODO add overload constructor for startup with ID already
-
     protected String getDescription() { return this.description; }
     protected int getUrgency() {
         return this.urgency;

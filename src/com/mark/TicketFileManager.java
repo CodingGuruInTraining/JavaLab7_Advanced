@@ -12,12 +12,12 @@ import java.util.LinkedList;
  */
 public class TicketFileManager {
 
-    // for saving open and closed tickets to separate txt files
-
-
     protected LinkedList<Ticket> openTickets;
     protected LinkedList<Ticket> closedTickets;
+    private String openFile = "openTickets.txt";
+    private String closeFile = "closedTickets.txt";
 
+    // Getters.
     public LinkedList<Ticket> getOpenTickets() {
         return openTickets;
     }
@@ -25,11 +25,10 @@ public class TicketFileManager {
         return closedTickets;
     }
 
-
-
+    // Constructor.
     public TicketFileManager() {
-        openTickets = fileReader("openTickets.txt");
-        closedTickets = fileReader("closedTickets.txt");
+        openTickets = fileReader(this.openFile);
+        closedTickets = fileReader(this.closeFile);
     }
 
     protected LinkedList<Ticket> fileReader(String filename) {
@@ -50,6 +49,8 @@ public class TicketFileManager {
                 tickets.add(t);
                 ticket_line = buffReader.readLine();
             }
+            buffReader.close();
+            return tickets;
         }
         catch (IOException err) {
             System.out.println("One or more files could not be found.");
@@ -57,6 +58,7 @@ public class TicketFileManager {
         catch (ParseException err) {
             System.out.println("An error exists with the saved dates.");
         }
+        return null;
     }
 
     protected void fileWriter(LinkedList<Ticket> tickets, String filename) {
