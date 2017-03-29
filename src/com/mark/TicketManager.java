@@ -179,8 +179,8 @@ public class TicketManager {
     }
 
     protected void exitEvent() {
-        filer.fileWriter(filer.openTickets, filer.openFile);
-        filer.fileWriter(filer.closedTickets, filer.closeFile);
+        filer.fileWriter(ticketQueue, filer.openFile);
+        filer.fileWriter(resolvedTickets, filer.closeFile);
     }
 
     public static void main(String[] args) {
