@@ -41,6 +41,7 @@ public class TicketManager {
                     break;
             }
         }
+//        exitEvent();
     }
 
 
@@ -174,6 +175,10 @@ public class TicketManager {
         t.setResolution(resolution);
         resolvedTickets.add(t);
         ticketQueue.remove(t);
+    }
+
+    protected void exitEvent() {
+
     }
 
     public static void main(String[] args) {

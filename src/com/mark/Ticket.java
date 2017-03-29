@@ -27,6 +27,8 @@ public class Ticket {
         this.isOpen = true;
     }
 
+    //TODO add overload constructor for startup with ID already
+
     protected String getDescription() { return this.description; }
     protected int getUrgency() {
         return this.urgency;
@@ -34,6 +36,10 @@ public class Ticket {
     protected int getTicketID() {
         return this.ticketID;
     }
+    protected String getReportedBy() { return this.reportedBy; }
+    protected Date getOpenedDate() { return this.openedDate; }
+    protected String getResolution() { return this.resolution; }
+    protected Date getClosedDate() { return this.closedDate; }
 
     protected void setResolution(String res) { this.resolution = res; }
     protected void setClosedDate(Date closed) { this.closedDate = closed; }
