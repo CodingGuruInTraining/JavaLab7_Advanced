@@ -3,9 +3,10 @@ package com.mark;
 import java.util.Date;
 
 /**
- * Created by hl4350hb on 3/20/2017.
+ * This class defines a Ticket object and its attributes.
  */
 public class Ticket {
+    // Defines attributes.
     private String description;
     private String reportedBy;
     private Date openedDate;
@@ -13,20 +14,23 @@ public class Ticket {
     private boolean isOpen;
     private Date closedDate;
     private String resolution;
-
-    private static int staticTicketIDCounter = 70001;
     protected int ticketID;
 
+    // Creates a class-specific global counter.
+    private static int staticTicketIDCounter = 70001;
+
+    // Constructor.
     public Ticket(String desc, int p, String rep, Date repDate) {
         this.description = desc;
         this.urgency = p;
         this.reportedBy = rep;
         this.openedDate = repDate;
         this.ticketID = staticTicketIDCounter;
+        // Increases global counter for next object.
         staticTicketIDCounter++;
         this.isOpen = true;
     }
-
+    // Constructor for recreating saved objects.
     public Ticket(int id, String desc, int p, String rep, Date repDate, String res, Date close) {
         this.ticketID = id;
         this.description = desc;
@@ -35,11 +39,13 @@ public class Ticket {
         this.openedDate = repDate;
         this.resolution = res;
         this.closedDate = close;
+        // Makes sure the global counter isn't lower than Ticket ID.
         if (id >= staticTicketIDCounter) {
             staticTicketIDCounter = id + 1;
         }
     }
 
+    // Getters.
     protected String getDescription() { return this.description; }
     protected int getUrgency() {
         return this.urgency;
@@ -52,10 +58,12 @@ public class Ticket {
     protected String getResolution() { return this.resolution; }
     protected Date getClosedDate() { return this.closedDate; }
 
+    // Setters.
     protected void setResolution(String res) { this.resolution = res; }
     protected void setClosedDate(Date closed) { this.closedDate = closed; }
     protected void setIsOpen(boolean status) { this.isOpen = status; }
 
+    // Custom string output.
     @Override
     public String toString() {
         return "Ticket ID: " + this.ticketID +

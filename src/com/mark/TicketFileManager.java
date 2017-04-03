@@ -8,12 +8,14 @@ import java.util.Date;
 import java.util.LinkedList;
 
 /**
- * Created by hl4350hb on 3/20/2017.
+ * This class defines a file manager object that opens and closes
+ * text files containing Ticket objects' data.
  */
 public class TicketFileManager {
-
+    // Defines attributes.
     protected LinkedList<Ticket> openTickets;
     protected LinkedList<Ticket> closedTickets;
+    // Sets default filename strings.
     protected String openFile = "openTickets.txt";
     protected String closeFile = "Resolved_tickets_as_of_";
 
