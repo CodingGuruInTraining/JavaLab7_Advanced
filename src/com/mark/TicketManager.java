@@ -60,7 +60,10 @@ public class TicketManager {
 
                 reporter = Input.getStringInput("Who reported this issue?:");
 
-                priority = Input.getPositiveIntInput("Enter priority of this issue (1 minor - 5 urgent:");
+                do {
+                    priority = Input.getPositiveIntInput("Enter priority of this issue (1 minor - 5 urgent:");
+                }
+                while (priority > 5 || priority < 1);
 
                 Ticket t = new Ticket(description, priority, reporter, dateReported);
                 addTicketByPriority(t);
