@@ -47,12 +47,8 @@ public class Ticket {
 
     // Getters.
     protected String getDescription() { return this.description; }
-    protected int getUrgency() {
-        return this.urgency;
-    }
-    protected int getTicketID() {
-        return this.ticketID;
-    }
+    protected int getUrgency() { return this.urgency; }
+    protected int getTicketID() { return this.ticketID; }
     protected String getReportedBy() { return this.reportedBy; }
     protected Date getOpenedDate() { return this.openedDate; }
     protected String getResolution() { return this.resolution; }
